@@ -44,7 +44,10 @@ dependencies {
     implementation(libs.androidx.camera.camera2)
     implementation(libs.androidx.camera.lifecycle)
     implementation(libs.androidx.camera.view)
-    implementation(libs.google.mlkit.barcode.scanning)
+    // Unbundled scanner: native barcode libs ship via Play services (16 KB page-size friendly APK).
+    implementation(libs.play.services.mlkit.barcode.scanning)
+    // Force aligned libandroidx.graphics.path.so (Compose pulls an older transitive without 16 KB ELF alignment).
+    implementation(libs.androidx.graphics.path)
     // AdMob — uncomment when ready (also restore AndroidManifest + ScanlioApplication + AdMobBanner.kt body).
     // implementation(libs.google.play.services.ads)
 

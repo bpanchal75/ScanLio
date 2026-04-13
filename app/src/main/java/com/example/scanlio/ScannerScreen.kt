@@ -28,9 +28,11 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.displayCutoutPadding
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
@@ -465,7 +467,8 @@ private fun TechScannerOverlay(
         Surface(
             modifier = Modifier
                 .align(Alignment.BottomCenter)
-                .padding(bottom = 28.dp, start = 24.dp, end = 24.dp),
+                .navigationBarsPadding()
+                .padding(bottom = 16.dp, start = 24.dp, end = 24.dp),
             shape = RoundedCornerShape(12.dp),
             color = scheme.scrim.copy(alpha = 0.45f),
             border = BorderStroke(1.dp, scheme.primary.copy(alpha = 0.25f)),
@@ -494,11 +497,22 @@ private fun TechTopBar(
     showTorch: Boolean,
     modifier: Modifier = Modifier,
 ) {
-    val scheme = MaterialTheme.colorScheme
+    val onCameraControls = Color.White
+    val onCameraControlsMuted = Color.White.copy(alpha = 0.78f)
     Row(
         modifier = modifier
-            .statusBarsPadding()
             .fillMaxWidth()
+            .background(
+                Brush.verticalGradient(
+                    colorStops = arrayOf(
+                        0f to Color.Black.copy(alpha = 0.72f),
+                        0.55f to Color.Black.copy(alpha = 0.4f),
+                        1f to Color.Transparent,
+                    ),
+                ),
+            )
+            .displayCutoutPadding()
+            .statusBarsPadding()
             .padding(horizontal = 4.dp, vertical = 10.dp),
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically,
@@ -507,7 +521,7 @@ private fun TechTopBar(
             Icon(
                 imageVector = Icons.AutoMirrored.Filled.ArrowBack,
                 contentDescription = stringResource(R.string.back),
-                tint = scheme.onSurface,
+                tint = onCameraControls,
             )
         }
         Column(modifier = Modifier.weight(1f)) {
@@ -517,12 +531,12 @@ private fun TechTopBar(
                     ScanMode.Barcode -> stringResource(R.string.scan_mode_barcode_title).uppercase()
                 },
                 style = MaterialTheme.typography.labelLarge,
-                color = scheme.primary,
+                color = onCameraControls,
             )
             Text(
                 text = stringResource(R.string.app_name),
                 style = MaterialTheme.typography.labelMedium,
-                color = scheme.onSurface.copy(alpha = 0.55f),
+                color = onCameraControlsMuted,
             )
         }
 
@@ -537,7 +551,11 @@ private fun TechTopBar(
                     contentDescription = stringResource(
                         if (torchEnabled) R.string.torch_on else R.string.torch_off,
                     ),
-                    tint = if (torchEnabled) scheme.primary else scheme.onSurface,
+                    tint = if (torchEnabled) {
+                        Color(0xFFFFE082)
+                    } else {
+                        onCameraControls
+                    },
                 )
             }
         }
@@ -546,7 +564,7 @@ private fun TechTopBar(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(8.dp),
             modifier = Modifier
-                .background(scheme.surface.copy(alpha = 0.55f), RoundedCornerShape(50))
+                .background(Color.Black.copy(alpha = 0.45f), RoundedCornerShape(50))
                 .padding(horizontal = 12.dp, vertical = 6.dp),
         ) {
             Box(
@@ -557,7 +575,7 @@ private fun TechTopBar(
             Text(
                 text = stringResource(R.string.live_view),
                 style = MaterialTheme.typography.labelMedium,
-                color = scheme.onSurface,
+                color = onCameraControls,
             )
         }
     }
