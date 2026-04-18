@@ -1,8 +1,8 @@
 <resources>
-    <!-- Google test App ID — replace with your real AdMob app ID before release. -->
-    <string name="admob_app_id" translatable="false">ca-app-pub-3940256099942544~3347511713</string>
-    <!-- Google test banner unit — replace with your real banner ad unit ID before release. -->
-    <string name="admob_banner_unit_id" translatable="false">ca-app-pub-3940256099942544/6300978111</string>
+    <!-- AdMob App ID (manifest APPLICATION_ID). From AdMob → App settings. -->
+    <string name="admob_app_id" translatable="false">ca-app-pub-3151958321407188~3467148509</string>
+    <!-- Banner ad unit ID (AdMobBannerStripe). From AdMob → Ad units. -->
+    <string name="admob_banner_unit_id" translatable="false">ca-app-pub-3151958321407188/1741943800</string>
 
     <string name="app_name">Scanlio</string>
     <string name="scan_instruction">Align code inside the frame</string>
