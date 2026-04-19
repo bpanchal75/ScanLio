@@ -26,6 +26,7 @@ import androidx.compose.material.icons.outlined.Email
 import androidx.compose.material.icons.outlined.Payment
 import androidx.compose.material.icons.outlined.Phone
 import androidx.compose.material.icons.outlined.Sms
+import androidx.compose.material.icons.outlined.Wifi
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CardDefaults
@@ -80,6 +81,9 @@ fun ScanResultScreen(
     }
     val contactActions = remember(payload, richPayloadActions) {
         if (richPayloadActions) contactActionSpec(payload) else ContactActionSpec()
+    }
+    val wifiAction = remember(payload, richPayloadActions) {
+        if (richPayloadActions) parseWifiPayload(payload) else null
     }
     val copiedMessage = stringResource(R.string.copied)
     val contactFailedMessage = stringResource(R.string.contact_action_failed)
@@ -209,6 +213,37 @@ fun ScanResultScreen(
                     style = MaterialTheme.typography.titleMedium,
                     color = scheme.onSurface.copy(alpha = 0.45f),
                 )
+            }
+
+            if (wifiAction != null && wifiAction.isValid) {
+                Spacer(modifier = Modifier.height(14.dp))
+                Button(
+                    onClick = {
+                        if (!context.connectToWifi(wifiAction)) {
+                            scope.launch {
+                                snackbarHostState.showSnackbar(
+                                    context.getString(R.string.wifi_connect_failed),
+                                )
+                            }
+                        }
+                    },
+                    modifier = Modifier.fillMaxWidth(),
+                    shape = RoundedCornerShape(16.dp),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = scheme.secondaryContainer,
+                        contentColor = scheme.onSecondaryContainer,
+                    ),
+                ) {
+                    Icon(
+                        imageVector = Icons.Outlined.Wifi,
+                        contentDescription = null,
+                    )
+                    Spacer(modifier = Modifier.width(10.dp))
+                    Text(
+                        text = stringResource(R.string.connect_wifi),
+                        style = MaterialTheme.typography.titleMedium,
+                    )
+                }
             }
 
             if (contactActions.hasAny) {

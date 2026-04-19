@@ -21,7 +21,7 @@
     <string name="home_subtitle">QR code or barcode — tap one to scan code now</string>
     <string name="scan_qr_code">QR code</string>
     <string name="scan_barcode">Barcode</string>
-    <string name="home_qr_card_hint">Links, menus, Wi‑Fi &amp; more</string>
+    <string name="home_qr_card_hint">Links, Wi‑Fi &amp; more</string>
     <string name="home_barcode_card_hint">Product &amp; retail barcodes</string>
     <string name="scan_mode_qr_title">QR code</string>
     <string name="scan_mode_barcode_title">Barcode</string>
@@ -65,4 +65,7 @@
     <string name="settings_contact_us">Contact us</string>
     <string name="settings_contact_us_hint">Tap the address to open your email app</string>
     <string name="support_email" translatable="false">nehavaghasiya777@gmail.com</string>
+
+    <string name="connect_wifi">Connect to Wi-Fi</string>
+    <string name="wifi_connect_failed">Could not connect to Wi-Fi</string>
 </resources>
