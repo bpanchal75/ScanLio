@@ -466,6 +466,14 @@ fun ScanResultScreen(
                 }
             }
 
+            val scanAgainSameText = remember(formatLabel) {
+                if (formatLabel.contains("QR", ignoreCase = true)) {
+                    R.string.scan_again_qr
+                } else {
+                    R.string.scan_again_barcode
+                }
+            }
+
             Spacer(modifier = Modifier.height(28.dp))
             Button(
                 onClick = onScanAgainToHome,
@@ -493,7 +501,7 @@ fun ScanResultScreen(
                 border = BorderStroke(1.dp, scheme.outline.copy(alpha = 0.5f)),
             ) {
                 Text(
-                    text = stringResource(R.string.scan_again_same),
+                    text = stringResource(scanAgainSameText),
                     style = MaterialTheme.typography.titleMedium,
                 )
             }

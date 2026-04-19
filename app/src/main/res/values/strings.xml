@@ -23,6 +23,9 @@
     <string name="scan_barcode">Barcode</string>
     <string name="home_qr_card_hint">Links, Wi‑Fi &amp; more</string>
     <string name="home_barcode_card_hint">Product &amp; retail barcodes</string>
+    <string name="home_coming_soon">Coming soon</string>
+    <string name="home_qr_generator">Create &amp; Share QR</string>
+    <string name="home_qr_generator_hint">Create your own QR codes for links, Wi-Fi, and contacts.</string>
     <string name="scan_mode_qr_title">QR code</string>
     <string name="scan_mode_barcode_title">Barcode</string>
     <string name="scan_instruction_qr">Align the QR code inside the frame</string>
@@ -30,8 +33,9 @@
     <string name="result_title">Scan result</string>
     <string name="result_body_title">Scanned content</string>
     <string name="back">Back</string>
-    <string name="scan_again_same">Scan again (same mode)</string>
-    <string name="scan_again_home">Scan again</string>
+    <string name="scan_again_home">Scan another code</string>
+    <string name="scan_again_qr">Scan another QR code</string>
+    <string name="scan_again_barcode">Scan another barcode</string>
     <string name="copy">Copy</string>
     <string name="copied">Copied to clipboard</string>
     <string name="clipboard_label">Scan result</string>

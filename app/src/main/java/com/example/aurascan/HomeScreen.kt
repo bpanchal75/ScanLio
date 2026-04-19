@@ -25,9 +25,12 @@ import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.QrCode
 import androidx.compose.material.icons.outlined.QrCode2
 import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.material.icons.outlined.ViewWeek
+import androidx.compose.material3.Badge
+import androidx.compose.material3.BadgedBox
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -185,9 +188,91 @@ fun HomeScreen(
                     )
                 }
 
+                Spacer(modifier = Modifier.height(16.dp))
+
+                ComingSoonTile(
+                    title = stringResource(R.string.home_qr_generator),
+                    hint = stringResource(R.string.home_qr_generator_hint),
+                    icon = Icons.Outlined.QrCode,
+                )
+
                 Spacer(modifier = Modifier.weight(1f))
             }
             AdMobBannerStripe(modifier = Modifier.fillMaxWidth())
+        }
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun ComingSoonTile(
+    title: String,
+    hint: String,
+    icon: ImageVector,
+    modifier: Modifier = Modifier,
+) {
+    val scheme = MaterialTheme.colorScheme
+
+    Surface(
+        onClick = { /* Disabled */ },
+        enabled = false,
+        shape = RoundedCornerShape(24.dp),
+        color = scheme.surfaceContainerHigh.copy(alpha = 0.6f),
+        border = BorderStroke(
+            width = 1.dp,
+            color = scheme.outline.copy(alpha = 0.05f),
+        ),
+        modifier = modifier.fillMaxWidth(),
+    ) {
+        Row(
+            modifier = Modifier
+                .padding(horizontal = 20.dp, vertical = 20.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(16.dp)
+        ) {
+            Box(
+                modifier = Modifier
+                    .size(48.dp)
+                    .clip(RoundedCornerShape(12.dp))
+                    .background(scheme.primary.copy(alpha = 0.1f)),
+                contentAlignment = Alignment.Center,
+            ) {
+                Icon(
+                    imageVector = icon,
+                    contentDescription = null,
+                    modifier = Modifier.size(24.dp),
+                    tint = scheme.primary.copy(alpha = 0.4f),
+                )
+            }
+
+            Column(modifier = Modifier.weight(1f)) {
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Text(
+                        text = title,
+                        style = MaterialTheme.typography.titleMedium,
+                        color = scheme.onSurface.copy(alpha = 0.5f),
+                    )
+                    Spacer(modifier = Modifier.width(8.dp))
+                    Surface(
+                        color = scheme.primary.copy(alpha = 0.1f),
+                        shape = RoundedCornerShape(4.dp)
+                    ) {
+                        Text(
+                            text = stringResource(R.string.home_coming_soon).uppercase(),
+                            style = MaterialTheme.typography.labelSmall,
+                            color = scheme.primary,
+                            modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp)
+                        )
+                    }
+                }
+                Text(
+                    text = hint,
+                    style = MaterialTheme.typography.bodySmall,
+                    color = scheme.onSurface.copy(alpha = 0.4f),
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
+                )
+            }
         }
     }
 }
