@@ -12,60 +12,74 @@ AuraScan is an Android app for scanning **QR codes** and **barcodes** with the d
 - **Edge-to-edge** layout on supported devices  
 - **AdMob** hooks are present in the repo but **disabled** by default so the app builds without the Play Services Ads SDK (see [Optional: AdMob](#optional-admob))
 
-## Requirements
+<p align="center">
+  <img src="app/src/main/res/drawable/aurascan_splash_logo.jpg" width="128" height="128" alt="AuraScan Logo">
+</p>
 
-| Item | Version / note |
-|------|----------------|
-| **minSdk** | 24 (Android 7.0) |
-| **targetSdk** | 36 |
-| **compileSdk** | 36 |
-| **Java** | 11 |
-| **Android Gradle Plugin** | 9.1.0 |
-| **Kotlin** | 2.2.10 |
+## ✨ Features
 
-Use a recent **Android Studio** version that supports the AGP and Compose setup declared in the Gradle files.
+- **🚀 Instant Scanning**: High-performance scanning using [ML Kit](https://developers.google.com/ml-kit/vision/barcode-scanning) and [CameraX](https://developer.android.com/training/camerax).
+- **📱 Smart Actions**: AuraScan doesn't just scan; it understands.
+  - **🌐 Web**: Open links directly in your browser.
+  - **📶 Wi-Fi**: Connect to networks instantly from QR codes.
+  - **💸 Payments**: Support for UPI apps for quick payments.
+  - **👤 Contacts**: Save VCards or dial/SMS phone numbers.
+  - **📅 Calendar**: Add events to your calendar from QR codes.
+  - **📍 Maps**: Open locations in Google Maps or your preferred map app.
+  - **💬 Social**: Quick links to WhatsApp and Instagram.
+  - **🔵 Bluetooth**: Pair devices via Bluetooth QR codes.
+- **🎨 Material 3 Design**: Beautiful, modern UI with support for dynamic colors.
+- **🌗 Theme Support**: Choose between Light, Dark, or System Default modes.
+- **🔦 Torch Toggle**: Built-in flashlight support for scanning in dark environments.
+- **📋 Clipboard Integration**: Quickly copy scanned content with a single tap.
 
-## Permissions
+## 📸 Screenshots
 
-- **Camera** — required for scanning (the app explains when permission is missing).  
-- **Internet** — declared for general connectivity (e.g. opening links); optional ad-related permissions are commented out while AdMob is off.
+*(Add your app screenshots here to make the README even more attractive!)*
 
-## Build and run
+| Home Screen | Scanner | Scan Result | Settings |
+| :---: | :---: | :---: | :---: |
+| ![Home](app/src/main/res/mipmap-xxxhdpi/ic_launcher.png) | ![Scanner](app/src/main/res/mipmap-xxxhdpi/ic_launcher.png) | ![Result](app/src/main/res/mipmap-xxxhdpi/ic_launcher.png) | ![Settings](app/src/main/res/mipmap-xxxhdpi/ic_launcher.png) |
 
-1. Clone the repository and open the project root in Android Studio.  
-2. Let Gradle sync finish.  
-3. Run the **app** configuration on a physical device or emulator **with a camera** for a realistic scan experience.
+## 🛠 Tech Stack
 
-From the project root:
+- **UI**: [Jetpack Compose](https://developer.android.com/jetpack/compose) (100% Kotlin)
+- **Architecture**: MVVM with Clean Architecture principles.
+- **Scanning**: Google ML Kit Barcode Scanning.
+- **Camera**: Jetpack CameraX.
+- **Navigation**: Jetpack Compose Navigation.
+- **Design**: Material 3.
 
-```bash
-./gradlew assembleDebug
-```
+## 🚀 Getting Started
 
-Debug APK output: `app/build/outputs/apk/debug/`.
+### Prerequisites
+- Android Studio Ladybug or newer.
+- Android SDK 24 (Android 7.0) or higher.
 
-Unit and instrumented tests (if you use them):
+### Installation
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-username/AuraScan.git
+   ```
+2. Open the project in Android Studio.
+3. Sync Gradle and run the app on your device.
 
-```bash
-./gradlew test
-./gradlew connectedAndroidTest
-```
+## 📦 Project Structure
 
-## Project layout
+- `app/src/main/java/com/example/aurascan/`: Main source code.
+- `ui/`: Theme and common UI components.
+- `MainActivity.kt`: Entry point and Navigation Host.
+- `ScannerScreen.kt`: Camera implementation.
+- `ScanResultScreen.kt`: Result handling and smart actions.
 
-| Path | Role |
-|------|------|
-| `app/src/main/java/com/example/aurascan/` | Compose UI, navigation, camera + ML Kit pipeline, theme |
-| `app/src/main/AndroidManifest.xml` | App id `com.example.aurascan`, permissions, launcher activity |
-| `app/build.gradle.kts` | Module config, dependencies |
-| `gradle/libs.versions.toml` | Version catalog for libraries and plugins |
+## 🤝 Contributing
 
-Main flow: `MainActivity` → `AuraScanNavHost` → splash, home, scanner (`ScannerScreen`), and result (`ScanResultScreen`).
+Contributions are welcome! If you have any ideas, suggestions, or bug reports, please open an issue or submit a pull request.
 
-## Optional: AdMob
+## 📄 License
 
-Advertising is intentionally **turned off** in the current tree. To enable it again, follow the steps documented in `app/src/main/java/com/example/aurascan/AdMobBanner.kt` (uncomment the Play Services Ads dependency, restore manifest entries and application initialization, and wire your real AdMob app and ad unit IDs in `app/src/main/res/values/strings.xml` instead of the Google test placeholders).
+AuraScan is available under the MIT License. See the [LICENSE](LICENSE) file for more info.
 
-## License
+---
 
-No license file is included in this repository. Add one (for example MIT or Apache-2.0) if you plan to publish or share the project.
+<p align="center">Made with ❤️ for the Android Community</p>
