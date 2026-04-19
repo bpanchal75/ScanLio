@@ -125,7 +125,6 @@ fun ScanResultScreen(
         ) {
             Column(
                 modifier = Modifier
-                    .weight(1f)
                     .fillMaxWidth()
                     .verticalScroll(rememberScrollState())
                     .padding(horizontal = 22.dp, vertical = 8.dp),
@@ -397,6 +396,7 @@ fun ScanResultScreen(
             }
             Spacer(modifier = Modifier.height(20.dp))
             }
+            Spacer(modifier = Modifier.weight(1f))
             AdMobBannerStripe(modifier = Modifier.fillMaxWidth())
         }
     }

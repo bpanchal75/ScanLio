@@ -27,13 +27,10 @@ import kotlin.math.roundToInt
 
 private const val AdsLogTag = "AuraScanAds"
 
-/** Cap anchored adaptive height (dp); keeps full width without a tall strip on large phones. */
-private const val AdaptiveBannerMaxHeightDp = 56
-
 /**
  * Bottom banner using AdMob **anchored adaptive** size so the creative spans the slot width
  * (standard [AdSize.BANNER] is only 320dp wide and shows side gutters on phones).
- * Height is capped with [AdaptiveBannerMaxHeightDp] so the stripe stays compact.
+ * Height follows the SDK’s anchored adaptive rules (two-arg API on current Play services).
  * [navigationBarsPadding] keeps the strip clear of the gesture / 3-button nav bar with edge-to-edge.
  */
 @Composable
@@ -54,7 +51,6 @@ fun AdMobBannerStripe(modifier: Modifier = Modifier) {
                 val size = AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(
                     context,
                     adWidthDp,
-                    AdaptiveBannerMaxHeightDp,
                 )
                 AdView(context).apply {
                     setAdSize(size)
