@@ -22,6 +22,6 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Scanlio"
+rootProject.name = "AuraScan"
 include(":app")
  

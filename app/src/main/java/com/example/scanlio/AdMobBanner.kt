@@ -25,11 +25,15 @@ import com.google.android.gms.ads.MobileAds
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener
 import kotlin.math.roundToInt
 
-private const val AdsLogTag = "ScanlioAds"
+private const val AdsLogTag = "AuraScanAds"
+
+/** Cap anchored adaptive height (dp); keeps full width without a tall strip on large phones. */
+private const val AdaptiveBannerMaxHeightDp = 56
 
 /**
  * Bottom banner using AdMob **anchored adaptive** size so the creative spans the slot width
  * (standard [AdSize.BANNER] is only 320dp wide and shows side gutters on phones).
+ * Height is capped with [AdaptiveBannerMaxHeightDp] so the stripe stays compact.
  * [navigationBarsPadding] keeps the strip clear of the gesture / 3-button nav bar with edge-to-edge.
  */
 @Composable
@@ -47,7 +51,11 @@ fun AdMobBannerStripe(modifier: Modifier = Modifier) {
 
         key(adWidthDp) {
             val adView = remember(context, adWidthDp) {
-                val size = AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(context, adWidthDp)
+                val size = AdSize.getCurrentOrientationAnchoredAdaptiveBannerAdSize(
+                    context,
+                    adWidthDp,
+                    AdaptiveBannerMaxHeightDp,
+                )
                 AdView(context).apply {
                     setAdSize(size)
                     adUnitId = context.getString(R.string.admob_banner_unit_id)

@@ -1,6 +1,6 @@
-# Scanlio
+# AuraScan
 
-Scanlio is an Android app for scanning **QR codes** and **barcodes** with the device camera. It uses [CameraX](https://developer.android.com/training/camerax) for preview and capture and [ML Kit Barcode Scanning](https://developers.google.com/ml-kit/vision/barcode-scanning) for decoding. The UI is built with **Jetpack Compose** and **Material 3**.
+AuraScan is an Android app for scanning **QR codes** and **barcodes** with the device camera. It uses [CameraX](https://developer.android.com/training/camerax) for preview and capture and [ML Kit Barcode Scanning](https://developers.google.com/ml-kit/vision/barcode-scanning) for decoding. The UI is built with **Jetpack Compose** and **Material 3**.
 
 ## Features
 

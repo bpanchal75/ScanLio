@@ -4,7 +4,8 @@
     <!-- Banner ad unit ID (AdMobBannerStripe). From AdMob → Ad units. -->
     <string name="admob_banner_unit_id" translatable="false">ca-app-pub-3151958321407188/1741943800</string>
 
-    <string name="app_name">Scanlio</string>
+    <!-- Launcher & default Play listing title. -->
+    <string name="app_name">AuraScan</string>
     <string name="scan_instruction">Align code inside the frame</string>
     <string name="camera_permission_required">Camera access is required to scan QR codes and barcodes.</string>
     <string name="grant_permission">Enable camera</string>
@@ -43,7 +44,7 @@
     <string name="send_email">Send email</string>
     <string name="contact_action_failed">Could not open app for this action</string>
     <string name="splash_tagline">QR · Barcode scanner</string>
-    <string name="splash_logo_cd">Scanlio — QR and barcode scanner</string>
+    <string name="splash_logo_cd">AuraScan — QR and barcode scanner</string>
     <string name="splash_continue">Continue</string>
     <string name="splash_auto_hint">Ready in a moment</string>
     <string name="splash_tap_hint">Tap anywhere to skip</string>
