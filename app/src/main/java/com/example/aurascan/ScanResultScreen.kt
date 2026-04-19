@@ -22,8 +22,11 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.outlined.ArrowBack
 import androidx.compose.material.icons.automirrored.outlined.OpenInNew
 import androidx.compose.material.icons.outlined.ContentCopy
+import androidx.compose.material.icons.outlined.CalendarMonth
 import androidx.compose.material.icons.outlined.Email
+import androidx.compose.material.icons.outlined.LocationOn
 import androidx.compose.material.icons.outlined.Payment
+import androidx.compose.material.icons.outlined.PersonAdd
 import androidx.compose.material.icons.outlined.Phone
 import androidx.compose.material.icons.outlined.Sms
 import androidx.compose.material.icons.outlined.Wifi
@@ -85,8 +88,21 @@ fun ScanResultScreen(
     val wifiAction = remember(payload, richPayloadActions) {
         if (richPayloadActions) parseWifiPayload(payload) else null
     }
+    val geoUri = remember(payload, richPayloadActions) {
+        if (richPayloadActions) geoUriForOpen(payload) else null
+    }
+    val calendarIntent = remember(payload, richPayloadActions) {
+        if (richPayloadActions) calendarIntentForOpen(payload) else null
+    }
+    val vCardIntent = remember(payload, richPayloadActions) {
+        if (richPayloadActions) vCardIntentForOpen(payload) else null
+    }
+    val whatsappUri = remember(payload, richPayloadActions) {
+        if (richPayloadActions) whatsappUriForOpen(payload) else null
+    }
     val copiedMessage = stringResource(R.string.copied)
     val contactFailedMessage = stringResource(R.string.contact_action_failed)
+    val actionFailedMessage = stringResource(R.string.action_failed)
 
     Scaffold(
         modifier = modifier.fillMaxSize(),
@@ -216,15 +232,19 @@ fun ScanResultScreen(
             }
 
             if (wifiAction != null && wifiAction.isValid) {
+                // ... wifi button code ...
+            }
+
+            if (geoUri != null) {
                 Spacer(modifier = Modifier.height(14.dp))
                 Button(
                     onClick = {
-                        if (!context.connectToWifi(wifiAction)) {
-                            scope.launch {
-                                snackbarHostState.showSnackbar(
-                                    context.getString(R.string.wifi_connect_failed),
-                                )
-                            }
+                        try {
+                            context.startActivity(Intent(Intent.ACTION_VIEW, geoUri).apply {
+                                addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                            })
+                        } catch (_: Exception) {
+                            scope.launch { snackbarHostState.showSnackbar(actionFailedMessage) }
                         }
                     },
                     modifier = Modifier.fillMaxWidth(),
@@ -234,15 +254,63 @@ fun ScanResultScreen(
                         contentColor = scheme.onSecondaryContainer,
                     ),
                 ) {
-                    Icon(
-                        imageVector = Icons.Outlined.Wifi,
-                        contentDescription = null,
-                    )
+                    Icon(imageVector = Icons.Outlined.LocationOn, contentDescription = null)
                     Spacer(modifier = Modifier.width(10.dp))
-                    Text(
-                        text = stringResource(R.string.connect_wifi),
-                        style = MaterialTheme.typography.titleMedium,
-                    )
+                    Text(text = stringResource(R.string.open_maps), style = MaterialTheme.typography.titleMedium)
+                }
+            }
+
+            if (calendarIntent != null) {
+                Spacer(modifier = Modifier.height(14.dp))
+                Button(
+                    onClick = {
+                        try {
+                            context.startActivity(calendarIntent.apply {
+                                addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                            })
+                        } catch (_: Exception) {
+                            scope.launch { snackbarHostState.showSnackbar(actionFailedMessage) }
+                        }
+                    },
+                    modifier = Modifier.fillMaxWidth(),
+                    shape = RoundedCornerShape(16.dp),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = scheme.secondaryContainer,
+                        contentColor = scheme.onSecondaryContainer,
+                    ),
+                ) {
+                    Icon(imageVector = Icons.Outlined.CalendarMonth, contentDescription = null)
+                    Spacer(modifier = Modifier.width(10.dp))
+                    Text(text = stringResource(R.string.add_calendar), style = MaterialTheme.typography.titleMedium)
+                }
+            }
+
+            if (vCardIntent != null) {
+                // ... vcard button code ...
+            }
+
+            if (whatsappUri != null) {
+                Spacer(modifier = Modifier.height(14.dp))
+                Button(
+                    onClick = {
+                        try {
+                            context.startActivity(Intent(Intent.ACTION_VIEW, whatsappUri).apply {
+                                addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                            })
+                        } catch (_: Exception) {
+                            scope.launch { snackbarHostState.showSnackbar(actionFailedMessage) }
+                        }
+                    },
+                    modifier = Modifier.fillMaxWidth(),
+                    shape = RoundedCornerShape(16.dp),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = scheme.secondaryContainer,
+                        contentColor = scheme.onSecondaryContainer,
+                    ),
+                ) {
+                    Icon(imageVector = Icons.AutoMirrored.Outlined.OpenInNew, contentDescription = null)
+                    Spacer(modifier = Modifier.width(10.dp))
+                    Text(text = stringResource(R.string.open_whatsapp), style = MaterialTheme.typography.titleMedium)
                 }
             }
 

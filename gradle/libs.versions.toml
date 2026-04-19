@@ -12,6 +12,7 @@ camerax = "1.5.3"
 playServicesMlkitBarcode = "18.3.1"
 graphicsPath = "1.0.1"
 playServicesAds = "23.6.0"
+coil = "2.7.0"
 navigationCompose = "2.8.9"
 datastorePreferences = "1.1.7"
 
@@ -42,6 +43,8 @@ androidx-camera-view = { group = "androidx.camera", name = "camera-view", versio
 androidx-graphics-path = { group = "androidx.graphics", name = "graphics-path", version.ref = "graphicsPath" }
 play-services-mlkit-barcode-scanning = { group = "com.google.android.gms", name = "play-services-mlkit-barcode-scanning", version.ref = "playServicesMlkitBarcode" }
 google-play-services-ads = { group = "com.google.android.gms", name = "play-services-ads", version.ref = "playServicesAds" }
+coil-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil" }
+coil-gif = { group = "io.coil-kt", name = "coil-gif", version.ref = "coil" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }
