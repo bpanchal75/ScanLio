@@ -1,4 +1,4 @@
-package com.example.scanlio
+package com.example.aurascan
 
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.flow.MutableStateFlow

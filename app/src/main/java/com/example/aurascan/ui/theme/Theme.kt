@@ -1,4 +1,4 @@
-package com.example.scanlio.ui.theme
+package com.example.aurascan.ui.theme
 
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -11,7 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 
-private val ScanlioDarkScheme = darkColorScheme(
+private val AuraScanDarkScheme = darkColorScheme(
     primary = TechPrimary,
     onPrimary = TechOnPrimary,
     primaryContainer = Color(0xFF003D36),
@@ -34,7 +34,7 @@ private val ScanlioDarkScheme = darkColorScheme(
     scrim = Color(0xCC000000),
 )
 
-private val ScanlioLightScheme = lightColorScheme(
+private val AuraScanLightScheme = lightColorScheme(
     primary = Color(0xFF006A60),
     onPrimary = Color.White,
     primaryContainer = Color(0xFF5FF4E4),
@@ -51,7 +51,7 @@ private val ScanlioLightScheme = lightColorScheme(
 )
 
 @Composable
-fun ScanlioTheme(
+fun AuraScanTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     dynamicColor: Boolean = false,
     content: @Composable () -> Unit,
@@ -61,8 +61,8 @@ fun ScanlioTheme(
             val context = LocalContext.current
             if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
         }
-        darkTheme -> ScanlioDarkScheme
-        else -> ScanlioLightScheme
+        darkTheme -> AuraScanDarkScheme
+        else -> AuraScanLightScheme
     }
 
     MaterialTheme(

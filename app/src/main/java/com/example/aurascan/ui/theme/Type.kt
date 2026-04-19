@@ -1,4 +1,4 @@
-package com.example.scanlio.ui.theme
+package com.example.aurascan.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

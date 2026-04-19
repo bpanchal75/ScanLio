@@ -1,4 +1,4 @@
-package com.example.scanlio.ui.theme
+package com.example.aurascan.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
@@ -10,7 +10,7 @@ val Purple40 = Color(0xFF6650a4)
 val PurpleGrey40 = Color(0xFF625b71)
 val Pink40 = Color(0xFF7D5260)
 
-// Scanlio “tech” palette — cyan on deep slate
+// AuraScan “tech” palette — cyan on deep slate
 val TechBg = Color(0xFF070A0E)
 val TechSurface = Color(0xFF0F1419)
 val TechSurfaceBright = Color(0xFF161D26)

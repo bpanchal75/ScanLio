@@ -1,4 +1,4 @@
-package com.example.scanlio
+package com.example.aurascan
 
 import org.junit.Test
 

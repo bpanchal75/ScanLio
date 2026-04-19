@@ -55,16 +55,16 @@ Unit and instrumented tests (if you use them):
 
 | Path | Role |
 |------|------|
-| `app/src/main/java/com/example/scanlio/` | Compose UI, navigation, camera + ML Kit pipeline, theme |
-| `app/src/main/AndroidManifest.xml` | App id `com.example.scanlio`, permissions, launcher activity |
+| `app/src/main/java/com/example/aurascan/` | Compose UI, navigation, camera + ML Kit pipeline, theme |
+| `app/src/main/AndroidManifest.xml` | App id `com.example.aurascan`, permissions, launcher activity |
 | `app/build.gradle.kts` | Module config, dependencies |
 | `gradle/libs.versions.toml` | Version catalog for libraries and plugins |
 
-Main flow: `MainActivity` → `ScanlioNavHost` → splash, home, scanner (`ScannerScreen`), and result (`ScanResultScreen`).
+Main flow: `MainActivity` → `AuraScanNavHost` → splash, home, scanner (`ScannerScreen`), and result (`ScanResultScreen`).
 
 ## Optional: AdMob
 
-Advertising is intentionally **turned off** in the current tree. To enable it again, follow the steps documented in `app/src/main/java/com/example/scanlio/AdMobBanner.kt` (uncomment the Play Services Ads dependency, restore manifest entries and application initialization, and wire your real AdMob app and ad unit IDs in `app/src/main/res/values/strings.xml` instead of the Google test placeholders).
+Advertising is intentionally **turned off** in the current tree. To enable it again, follow the steps documented in `app/src/main/java/com/example/aurascan/AdMobBanner.kt` (uncomment the Play Services Ads dependency, restore manifest entries and application initialization, and wire your real AdMob app and ad unit IDs in `app/src/main/res/values/strings.xml` instead of the Google test placeholders).
 
 ## License
 

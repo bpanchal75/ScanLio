@@ -1,4 +1,4 @@
-package com.example.scanlio
+package com.example.aurascan
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.Animatable

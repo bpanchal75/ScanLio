@@ -1,4 +1,4 @@
-package com.example.scanlio
+package com.example.aurascan
 
 import com.google.mlkit.vision.barcode.BarcodeScannerOptions
 import com.google.mlkit.vision.barcode.common.Barcode

@@ -1,4 +1,4 @@
-package com.example.scanlio
+package com.example.aurascan
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -17,7 +17,7 @@ private const val ROUTE_SCAN = "scan"
 private const val ROUTE_RESULT = "result"
 
 @Composable
-fun ScanlioNavHost(
+fun AuraScanNavHost(
     modifier: Modifier = Modifier,
     navController: NavHostController = rememberNavController(),
     scanResultViewModel: ScanResultViewModel = viewModel(),

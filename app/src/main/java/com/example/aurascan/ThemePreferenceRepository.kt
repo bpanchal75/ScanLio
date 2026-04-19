@@ -1,4 +1,4 @@
-package com.example.scanlio
+package com.example.aurascan
 
 import android.content.Context
 import androidx.compose.runtime.staticCompositionLocalOf
@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
 private val Context.themePreferenceDataStore: DataStore<Preferences> by preferencesDataStore(
-    name = "scanlio_theme",
+    name = "aurascan_theme",
 )
 
 private val KEY_THEME_MODE = stringPreferencesKey("theme_mode")

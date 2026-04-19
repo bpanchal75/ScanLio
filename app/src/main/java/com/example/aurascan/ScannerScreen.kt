@@ -1,4 +1,4 @@
-package com.example.scanlio
+package com.example.aurascan
 
 import android.Manifest
 import android.content.pm.PackageManager

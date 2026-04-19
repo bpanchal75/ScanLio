@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "com.example.scanlio"
+    namespace = "com.example.aurascan"
     compileSdk {
         version = release(36) {
             minorApiLevel = 1
@@ -12,7 +12,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = "com.example.scanlio"
+        applicationId = "com.example.aurascan"
         minSdk = 24
         targetSdk = 36
         versionCode = 1

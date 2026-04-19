@@ -1,9 +1,9 @@
-package com.example.scanlio
+package com.example.aurascan
 
 import android.app.Application
 import com.google.android.gms.ads.MobileAds
 
-class ScanlioApplication : Application() {
+class AuraScanApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         MobileAds.initialize(this) {}

@@ -1,4 +1,4 @@
-package com.example.scanlio
+package com.example.aurascan
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -11,7 +11,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.example.scanlio.ui.theme.ScanlioTheme
+import com.example.aurascan.ui.theme.AuraScanTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,8 +27,8 @@ class MainActivity : ComponentActivity() {
                 ThemeMode.System -> systemDark
             }
             CompositionLocalProvider(LocalThemePreferenceRepository provides repository) {
-                ScanlioTheme(darkTheme = useDarkTheme, dynamicColor = false) {
-                    ScanlioNavHost(modifier = Modifier.fillMaxSize())
+                AuraScanTheme(darkTheme = useDarkTheme, dynamicColor = false) {
+                    AuraScanNavHost(modifier = Modifier.fillMaxSize())
                 }
             }
         }
