@@ -23,6 +23,7 @@ import androidx.compose.material.icons.automirrored.outlined.ArrowBack
 import androidx.compose.material.icons.automirrored.outlined.OpenInNew
 import androidx.compose.material.icons.outlined.ContentCopy
 import androidx.compose.material.icons.outlined.Email
+import androidx.compose.material.icons.outlined.Payment
 import androidx.compose.material.icons.outlined.Phone
 import androidx.compose.material.icons.outlined.Sms
 import androidx.compose.material3.Button
@@ -66,12 +67,20 @@ fun ScanResultScreen(
 ) {
     val payload by viewModel.payload.collectAsStateWithLifecycle()
     val formatLabel by viewModel.formatLabel.collectAsStateWithLifecycle()
+    val richPayloadActions by viewModel.richPayloadActions.collectAsStateWithLifecycle()
     val scheme = MaterialTheme.colorScheme
     val context = LocalContext.current
     val snackbarHostState = remember { SnackbarHostState() }
     val scope = rememberCoroutineScope()
-    val openUri = remember(payload) { webUriForOpen(payload) }
-    val contactActions = remember(payload) { contactActionSpec(payload) }
+    val openUri = remember(payload, richPayloadActions) {
+        if (richPayloadActions) webUriForOpen(payload) else null
+    }
+    val upiUri = remember(payload, richPayloadActions) {
+        if (richPayloadActions) upiPayUriForOpen(payload) else null
+    }
+    val contactActions = remember(payload, richPayloadActions) {
+        if (richPayloadActions) contactActionSpec(payload) else ContactActionSpec()
+    }
     val copiedMessage = stringResource(R.string.copied)
     val contactFailedMessage = stringResource(R.string.contact_action_failed)
 
@@ -112,10 +121,15 @@ fun ScanResultScreen(
                             scheme.surfaceContainerLow,
                         ),
                     ),
-                )
-                .padding(horizontal = 22.dp, vertical = 8.dp)
-                .verticalScroll(rememberScrollState()),
+                ),
         ) {
+            Column(
+                modifier = Modifier
+                    .weight(1f)
+                    .fillMaxWidth()
+                    .verticalScroll(rememberScrollState())
+                    .padding(horizontal = 22.dp, vertical = 8.dp),
+            ) {
             Text(
                 text = stringResource(R.string.result_body_title),
                 style = MaterialTheme.typography.titleMedium,
@@ -274,6 +288,45 @@ fun ScanResultScreen(
                 }
             }
 
+            if (upiUri != null) {
+                Spacer(modifier = Modifier.height(14.dp))
+                Button(
+                    onClick = {
+                        try {
+                            val view = Intent(Intent.ACTION_VIEW, upiUri)
+                            val chooserTitle = context.getString(R.string.open_in_upi_app)
+                            context.startActivity(
+                                Intent.createChooser(view, chooserTitle).apply {
+                                    addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                                },
+                            )
+                        } catch (_: Exception) {
+                            scope.launch {
+                                snackbarHostState.showSnackbar(
+                                    context.getString(R.string.open_upi_failed),
+                                )
+                            }
+                        }
+                    },
+                    modifier = Modifier.fillMaxWidth(),
+                    shape = RoundedCornerShape(16.dp),
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = scheme.secondaryContainer,
+                        contentColor = scheme.onSecondaryContainer,
+                    ),
+                ) {
+                    Icon(
+                        imageVector = Icons.Outlined.Payment,
+                        contentDescription = null,
+                    )
+                    Spacer(modifier = Modifier.width(10.dp))
+                    Text(
+                        text = stringResource(R.string.open_in_upi_app),
+                        style = MaterialTheme.typography.titleMedium,
+                    )
+                }
+            }
+
             if (openUri != null) {
                 Spacer(modifier = Modifier.height(14.dp))
                 Button(
@@ -343,6 +396,7 @@ fun ScanResultScreen(
                 )
             }
             Spacer(modifier = Modifier.height(20.dp))
+            }
             AdMobBannerStripe(modifier = Modifier.fillMaxWidth())
         }
     }

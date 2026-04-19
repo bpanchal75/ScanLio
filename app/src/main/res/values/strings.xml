@@ -35,7 +35,9 @@
     <string name="copied">Copied to clipboard</string>
     <string name="clipboard_label">Scan result</string>
     <string name="open_in_browser">Open in browser</string>
+    <string name="open_in_upi_app">Open in UPI app</string>
     <string name="open_browser_failed">Could not open link</string>
+    <string name="open_upi_failed">Could not open a UPI app</string>
     <string name="dial_phone">Dial number</string>
     <string name="send_sms">Send text</string>
     <string name="send_email">Send email</string>
@@ -52,4 +54,7 @@
     <string name="settings_theme_dark">Dark</string>
     <string name="settings_theme_system">System default</string>
     <string name="settings_theme_hint">Choose light, dark, or match your device</string>
+    <string name="settings_contact_us">Contact us</string>
+    <string name="settings_contact_us_hint">Tap the address to open your email app</string>
+    <string name="support_email" translatable="false">bpanchal75@gmail.com</string>
 </resources>

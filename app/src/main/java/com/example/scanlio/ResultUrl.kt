@@ -28,3 +28,21 @@ fun webUriForOpen(raw: String): Uri? {
 
     return null
 }
+
+/**
+ * Returns a `upi://pay` [Uri] for [Intent.ACTION_VIEW] so the system can open a UPI app (PhonePe, GPay, etc.).
+ * See NPCI static / dynamic merchant QR payloads.
+ */
+fun upiPayUriForOpen(raw: String): Uri? {
+    val t = raw.trim().trim('"', '\'')
+    if (t.isEmpty()) return null
+    val uri = try {
+        Uri.parse(t)
+    } catch (_: Exception) {
+        return null
+    }
+    if (uri.scheme?.equals("upi", ignoreCase = true) != true) return null
+    if (uri.host?.equals("pay", ignoreCase = true) != true) return null
+    if (uri.getQueryParameter("pa").isNullOrBlank()) return null
+    return uri
+}

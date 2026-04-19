@@ -56,7 +56,11 @@ fun ScanlioNavHost(
             ScannerScreen(
                 scanMode = mode,
                 onScanComplete = { payload, format ->
-                    scanResultViewModel.setResult(payload, format)
+                    scanResultViewModel.setResult(
+                        payload = payload,
+                        formatLabel = format,
+                        richPayloadActions = mode == ScanMode.Qr,
+                    )
                     navController.navigate(ROUTE_RESULT)
                 },
                 onBack = { navController.popBackStack() },
